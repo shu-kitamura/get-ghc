@@ -1,4 +1,9 @@
-import { getMyLogin, fetchCommits, parseIsoDateOnlyUTC } from "../lib/index.js";
+import {
+  getMyLogin,
+  fetchCommits,
+  parseIsoDateOnlyUTC,
+  groupCommitsByRepository,
+} from "../lib/index.js";
 
 type CliOptions = {
   start?: string;
@@ -78,9 +83,10 @@ async function main() {
   }
 
   const commits = await fetchCommits(token, login, since, until);
+  const grouped = groupCommitsByRepository(commits);
 
-  // JSON（配列）で出力
-  console.log(JSON.stringify(commits, null, 2));
+  // JSON（リポジトリごとの配列）で出力
+  console.log(JSON.stringify(grouped, null, 2));
 }
 
 main().catch((e) => {

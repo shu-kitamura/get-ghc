@@ -20,3 +20,13 @@ export type Commit = {
   message: string; // 1行目だけ（必要なら全文に変更OK）
   url: string; // commit URL
 };
+
+export type CommitItem = {
+  date: string;
+  message: string;
+};
+
+export type RepositoryCommits = {
+  repository: string; // owner/repo
+  commits: CommitItem[];
+};

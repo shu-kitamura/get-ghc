@@ -14,11 +14,13 @@ GitHub API（Search Commits）を使って、自分のコミット履歴を取�
 ```json
 [
   {
-    "date": "2026-01-30T00:01:17.000+09:00",
     "repository": "owner/repo",
-    "sha": "abc123...",
-    "message": "コミットメッセージ",
-    "url": "https://github.com/owner/repo/commit/abc123..."
+    "commits": [
+      {
+        "date": "2026-01-30T00:01:17.000+09:00",
+        "message": "コミットメッセージ"
+      }
+    ]
   }
 ]
 ```
