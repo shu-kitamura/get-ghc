@@ -1,0 +1,21 @@
+{
+  "name": "get-commit-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to get commit information from GitHub",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.1.0",
+    "oxfmt": "^0.27.0",
+    "oxlint": "^1.42.0",
+    "oxlint-tsgolint": "^0.11.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
