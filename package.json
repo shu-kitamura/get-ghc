@@ -12,12 +12,6 @@
     "build": "tsc",
     "test": "jest"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {
-      "^.+\\.tsx?$": ["ts-jest", {}]
-    }
-  },
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^25.1.0",
@@ -28,5 +22,14 @@
     "ts-jest": "^29.4.6",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {}
+      ]
+    }
   }
 }

@@ -23,7 +23,12 @@ export async function getMyLogin(token: string): Promise<string> {
   return me.login;
 }
 
-export async function fetchCommits(token: string, login: string, since: Date, until: Date): Promise<Commit[]> {
+export async function fetchCommits(
+  token: string,
+  login: string,
+  since: Date,
+  until: Date,
+): Promise<Commit[]> {
   // Search query: 自分(author) + committer-date 範囲
   const q = `author:${login} committer-date:${isoDateOnlyUTC(since)}..${isoDateOnlyUTC(until)}`;
 
