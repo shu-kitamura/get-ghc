@@ -85,7 +85,7 @@ async function main() {
   const commits = await fetchCommits(token, login, since, until);
   const grouped = groupCommitsByRepository(commits);
 
-  // JSON（リポジトリごとの配列）で出力
+  // JSON（total + repos配列）で出力
   console.log(JSON.stringify(grouped, null, 2));
 }
 

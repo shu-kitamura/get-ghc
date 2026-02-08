@@ -2,6 +2,7 @@
 export type {
   Commit,
   CommitItem,
+  GroupedCommitsOutput,
   RepositoryCommits,
   SearchCommitsResponse,
 } from "./types.js";

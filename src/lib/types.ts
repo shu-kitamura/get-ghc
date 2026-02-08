@@ -30,3 +30,8 @@ export type RepositoryCommits = {
   repository: string; // owner/repo
   commits: CommitItem[];
 };
+
+export type GroupedCommitsOutput = {
+  total: number; // repos内のコミット総数
+  repos: RepositoryCommits[];
+};

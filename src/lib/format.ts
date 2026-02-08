@@ -1,8 +1,12 @@
-import type { Commit, RepositoryCommits } from "./types.js";
+import type {
+  Commit,
+  GroupedCommitsOutput,
+  RepositoryCommits,
+} from "./types.js";
 
 export function groupCommitsByRepository(
   commits: Commit[]
-): RepositoryCommits[] {
+): GroupedCommitsOutput {
   const map = new Map<string, RepositoryCommits>();
 
   for (const commit of commits) {
@@ -18,5 +22,10 @@ export function groupCommitsByRepository(
     });
   }
 
-  return Array.from(map.values());
+  const repos = Array.from(map.values());
+
+  return {
+    total: commits.length,
+    repos,
+  };
 }

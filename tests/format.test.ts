@@ -2,8 +2,8 @@ import { groupCommitsByRepository } from "../src/lib/format";
 import type { Commit } from "../src/lib/types";
 
 describe("groupCommitsByRepository", () => {
-  it("returns empty array when no commits", () => {
-    expect(groupCommitsByRepository([])).toEqual([]);
+  it("returns object with total and empty repos when no commits", () => {
+    expect(groupCommitsByRepository([])).toEqual({ total: 0, repos: [] });
   });
 
   it("groups commits by repository and preserves order", () => {
@@ -31,18 +31,23 @@ describe("groupCommitsByRepository", () => {
       },
     ];
 
-    expect(groupCommitsByRepository(commits)).toEqual([
-      {
-        repository: "owner/repo1",
-        commits: [
-          { date: "2026-01-02T10:00:00.000+09:00", message: "first" },
-          { date: "2026-01-04T10:00:00.000+09:00", message: "third" },
-        ],
-      },
-      {
-        repository: "owner/repo2",
-        commits: [{ date: "2026-01-03T10:00:00.000+09:00", message: "second" }],
-      },
-    ]);
+    expect(groupCommitsByRepository(commits)).toEqual({
+      total: 3,
+      repos: [
+        {
+          repository: "owner/repo1",
+          commits: [
+            { date: "2026-01-02T10:00:00.000+09:00", message: "first" },
+            { date: "2026-01-04T10:00:00.000+09:00", message: "third" },
+          ],
+        },
+        {
+          repository: "owner/repo2",
+          commits: [
+            { date: "2026-01-03T10:00:00.000+09:00", message: "second" },
+          ],
+        },
+      ],
+    });
   });
 });
