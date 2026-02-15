@@ -46,12 +46,14 @@ npm install
 ### 1. GitHub Personal Access Token を設定
 
 ```bash
-export GITHUB_TOKEN="your_github_token"
+echo 'GITHUB_TOKEN="your_github_token"' > .env
 ```
 
 トークンには以下のスコープが必要です：
 
 - `repo`（プライベートリポジトリのコミットを取得する場合）
+
+`.env` ではなく環境変数として直接設定しても動作します。
 
 ### 2. 実行
 

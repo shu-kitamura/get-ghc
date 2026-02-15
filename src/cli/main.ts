@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   getMyLogin,
   fetchCommits,
@@ -42,7 +44,32 @@ function parseArgs(argv: string[]): CliOptions {
   return out;
 }
 
+function loadGitHubTokenFromDotEnv() {
+  if (process.env.GITHUB_TOKEN) return;
+
+  const envPath = resolve(process.cwd(), ".env");
+  if (!existsSync(envPath)) return;
+
+  const envContent = readFileSync(envPath, "utf8");
+  const match = envContent.match(
+    /^\s*(?:export\s+)?GITHUB_TOKEN\s*=\s*(.*?)\s*$/m
+  );
+  if (!match) return;
+
+  let token = match[1].trim();
+  if (
+    (token.startsWith('"') && token.endsWith('"')) ||
+    (token.startsWith("'") && token.endsWith("'"))
+  ) {
+    token = token.slice(1, -1);
+  }
+
+  process.env.GITHUB_TOKEN = token;
+}
+
 async function main() {
+  loadGitHubTokenFromDotEnv();
+
   const token = process.env.GITHUB_TOKEN;
   if (!token) throw new Error("GITHUB_TOKEN is required");
 
